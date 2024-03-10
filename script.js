@@ -5,6 +5,7 @@ const clearBtn = document.getElementById("clear");
 const itemFilter = document.getElementById("filter");
 
 
+
 function addItem(e) {
   e.preventDefault();
   // Validate Input
@@ -66,6 +67,24 @@ function clearItems(){
 }
 
 
+function filterItems(e){
+  const items = document.querySelectorAll("li");
+  const text = e.target.value.toLowerCase();
+  items.forEach((item) => {
+    const itemName = item.firstChild.textContent.toLocaleLowerCase();
+    if(itemName.indexOf(text)!=-1){
+      item.style.display="flex"
+    }else{
+      item.style.display="none"
+    }
+    
+  }
+  )
+  
+}
+
+
+
 // Step three i make function to check for UI if include any list item on web page .
 function checkUI(){
   const items = document.querySelectorAll("li");
@@ -83,5 +102,6 @@ return
 itemForm.addEventListener("submit", addItem);
 itemList.addEventListener("click", removeItem);
 clearBtn.addEventListener("click",clearItems);
+itemFilter.addEventListener("input",filterItems)
 
 checkUI();
